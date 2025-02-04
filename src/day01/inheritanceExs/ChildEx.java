@@ -1,4 +1,4 @@
-package day01;
+package day01.inheritanceExs;
 
 public class ChildEx {
     public static void main(String[] args) {
