@@ -1,4 +1,8 @@
 package day03.InterfaceEx2;
 
-public class Pet {
+public interface Pet {
+
+    void play();
+
+
 }
