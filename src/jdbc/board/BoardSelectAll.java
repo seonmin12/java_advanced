@@ -1,9 +1,10 @@
-package jdbc.users;
-// 사용자 입력 자바 클래스
+package jdbc.board;
+
+import jdbc.users.User;
 
 import java.sql.*;
 
-public class UserSelectAll {
+public class BoardSelectAll {
     public static void main(String[] args) {
         Connection connection = null;
         ResultSet rs = null;
@@ -22,7 +23,7 @@ public class UserSelectAll {
 
 
             String query = new StringBuilder()
-                    .append("SELECT * FROM users ")
+                    .append("SELECT * FROM boards ")
                     .toString();
 
             PreparedStatement pstmt = connection.prepareStatement(query);
@@ -30,14 +31,20 @@ public class UserSelectAll {
             rs = pstmt.executeQuery();
 
             while(rs.next()) {
-                User user = new User();
-                user.setUserid(rs.getString("userid"));
-                user.setUsername(rs.getString("username"));
-                user.setUserpassword(rs.getString("userpassword"));
-                user.setAge(rs.getInt("userage"));
-                user.setEmail(rs.getString("useremail"));
-                System.out.println(user);
+                Board board = new Board();
+                board.setBno(rs.getInt("bno"));
+                board.setBtitle(rs.getString("btitle"));
+                board.setBcontent(rs.getString("bcontent"));
+                board.setBwriter(rs.getString("bwriter"));
+                board.setBdate(rs.getDate("bdate"));
+
+
+
+                System.out.println(board);
+
             }
+
+
 
             //5. PreparedStatement 객체 닫기
             pstmt.close();
@@ -60,8 +67,5 @@ public class UserSelectAll {
 
 
         }
-
-
-
     }
 }
